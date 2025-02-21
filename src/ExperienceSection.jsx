@@ -12,7 +12,21 @@ export default function ExperienceSection(){
                     position_text: action.position_text,
                 }];
             }
-            
+            case 'changed': {
+                return positions.map(p => {
+                    if(p.id === action.position.id) {
+                        return action.position;
+                    }else{
+                        return p;
+                    }
+                });
+            }
+            default: {
+                throw Error('Unknown action: ' + action.type);
+            }
         }
     }
 }
+
+let nextId = 0;
+const initialPositions = [];
