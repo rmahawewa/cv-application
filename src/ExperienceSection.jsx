@@ -1,0 +1,18 @@
+import { useReducer } from "react";
+
+
+export default function ExperienceSection(){
+    const [positions, dispatch] = useReducer(positionsReducer, initialPositions);
+
+    function positionsReducer(positions, action) {
+        switch (action.type) {
+            case 'added':{
+                return [...positions, {
+                    id: action.id,
+                    position_text: action.position_text,
+                }];
+            }
+            
+        }
+    }
+}
