@@ -4,6 +4,23 @@ import { useReducer } from "react";
 export default function ExperienceSection(){
     const [positions, dispatch] = useReducer(positionsReducer, initialPositions);
 
+    function handleAddPosition(text){
+        dispatch({
+            type: 'added',
+            id: nextId++,
+            position_text: text,
+        });
+    }
+
+    function handleChangePosition(position){
+        dispatch({
+            type: 'changed',
+            position: position
+        });
+    }
+
+    
+
     function positionsReducer(positions, action) {
         switch (action.type) {
             case 'added':{
