@@ -19,28 +19,37 @@ export default function ExperienceSection(){
         });
     }
 
-    
+    return (
+        <>
+            <h1>Working Experience</h1>
+            <AddExperience 
+                onAddPosition = {handleAddPosition}
+            />
+        </>
+    );
 
-    function positionsReducer(positions, action) {
-        switch (action.type) {
-            case 'added':{
-                return [...positions, {
-                    id: action.id,
-                    position_text: action.position_text,
-                }];
-            }
-            case 'changed': {
-                return positions.map(p => {
-                    if(p.id === action.position.id) {
-                        return action.position;
-                    }else{
-                        return p;
-                    }
-                });
-            }
-            default: {
-                throw Error('Unknown action: ' + action.type);
-            }
+    
+}
+
+function positionsReducer(positions, action) {
+    switch (action.type) {
+        case 'added':{
+            return [...positions, {
+                id: action.id,
+                position_text: action.position_text,
+            }];
+        }
+        case 'changed': {
+            return positions.map(p => {
+                if(p.id === action.position.id) {
+                    return action.position;
+                }else{
+                    return p;
+                }
+            });
+        }
+        default: {
+            throw Error('Unknown action: ' + action.type);
         }
     }
 }
