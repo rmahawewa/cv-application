@@ -1,4 +1,6 @@
 import { useReducer } from "react";
+import AddExperience from "./AddExperience";
+import PositionList from "./PositionList";
 
 
 export default function ExperienceSection(){
@@ -24,6 +26,10 @@ export default function ExperienceSection(){
             <h1>Working Experience</h1>
             <AddExperience 
                 onAddPosition = {handleAddPosition}
+            />
+            <PositionList 
+                positions = {positions}
+                onChangePosition = {handleChangePosition}
             />
         </>
     );
@@ -54,5 +60,8 @@ function positionsReducer(positions, action) {
     }
 }
 
-let nextId = 0;
-const initialPositions = [];
+let nextId = 2;
+const initialPositions = [
+    {id:0, position_text: 'Software Developer'},
+    {id:1, position_text: 'Web Application Developer'}
+];
