@@ -1,98 +1,33 @@
 import { useState } from 'react';
 
-export default function GetGeneralInformation(){
-    const [candidateInfo, setCandidateInfo] = useState({
-        candidateName: '',
-        email: '',
-        phoneNumber: ''
-    });
-
-    // const [candidateNameEditing, setCandidateNameEditing] = useState(true);
-    // const [emailEditing, setEmailEditing] = useState(true);
-    // const [phoneNumberEditing, setPhoneNumberEditing] = useState(false);
-
-    const [dataEditing, setDataEditing] = useState({
-        candidateNameEditing: true,
-        emailEditing: true,
-        phoneNumberEditing: true
-    });
-
-    function handleCandidateNameChange(e){
-        setCandidateInfo({
-            ...candidateInfo,
-            candidateName: e.target.value
-        });
-    }
-
-    function handleEmailChange(e){
-        setCandidateInfo({
-            ...candidateInfo,
-            email: e.target.value
-        });
-    }
-
-    function handlePhoneNumberChange(e){
-        setCandidateInfo({
-            ...candidateInfo,
-            phoneNumber: e.target.value
-        });
-    }
-
-    function handleCandidateNameSubmitButtonClick(){
-        setDataEditing({
-            ...dataEditing,
-            candidateNameEditing: false
-        });
-    }
-
-    function handleCandidateNameEditButtonClick(){
-        setDataEditing({
-            ...dataEditing,
-            candidateNameEditing: true
-        });
-    }
-
-    function handleCandidateEmailSubmitButtonClick(){
-        setDataEditing({
-            ...dataEditing,
-            emailEditing: false
-        });
-    }
-
-    function handleCandidateEmailEditButtonClick(){
-        setDataEditing({
-            ...dataEditing,
-            emailEditing: true
-        });
-    }
-
-    function handleCandidatePhoneNumberSubmitButtonClick(){
-        setDataEditing({
-            ...dataEditing,
-            phoneNumberEditing: false
-        });
-    }
-
-    function handleCandidatePhoneNumberEditButtonClick(){
-        setDataEditing({
-            ...dataEditing,
-            phoneNumberEditing: true
-        });
-    }
-
+export default function GetGeneralInformation({
+    candidateInfo,
+    dataEditing,
+    onCandidateNameChange,
+    onCandidateEmailChange,
+    onCandidatePhoneChange,
+    onCandidateNameSubmitButtonClick,
+    onCandidateNameEditButtonClick,
+    onCandidateEmailSubmitButtonClick,
+    onCandidateEmailEditButtonClick,
+    onCandidatePhoneNumberSubmitButtonClick,
+    onCandidatePhoneNumberEditButtonClick
+}){
     
     return (
     
             <>
+                <h1>General Information</h1>
+
                 {dataEditing.candidateNameEditing ? (
                     <div>
                     <label>Candidate's name: 
                     <input 
                         value={candidateInfo.candidateName}
-                        onChange={handleCandidateNameChange}
+                        onChange={onCandidateNameChange}
                     />
                     </label>
-                    <button onClick={handleCandidateNameSubmitButtonClick}>
+                    <button onClick={onCandidateNameSubmitButtonClick}>
                     Submit
                     </button>
                     </div>
@@ -102,7 +37,7 @@ export default function GetGeneralInformation(){
                         <label>Candidate's name:
                             {candidateInfo.candidateName}
                         </label>
-                        <button onClick={handleCandidateNameEditButtonClick}>
+                        <button onClick={onCandidateNameEditButtonClick}>
                             Edit
                         </button>
                     </div>
@@ -113,10 +48,10 @@ export default function GetGeneralInformation(){
                         <label>Candidate's email:
                             <input 
                                 value={candidateInfo.email}
-                                onChange={handleEmailChange}
+                                onChange={onCandidateEmailChange}
                             />
                         </label>
-                        <button onClick={handleCandidateEmailSubmitButtonClick}>
+                        <button onClick={onCandidateEmailSubmitButtonClick}>
                             Submit
                         </button>
                     </div>
@@ -125,7 +60,7 @@ export default function GetGeneralInformation(){
                         <label>Candidate's email:
                             {candidateInfo.email}
                         </label>
-                        <button onClick={handleCandidateEmailEditButtonClick}>
+                        <button onClick={onCandidateEmailEditButtonClick}>
                             Edit
                         </button>
                     </div>
@@ -134,12 +69,12 @@ export default function GetGeneralInformation(){
                 {dataEditing.phoneNumberEditing ? (
                     <div>
                         <label>Candidate's phone number:
-                            <input 
+                            <input
                                 value={candidateInfo.phoneNumber}
-                                onChange={handlePhoneNumberChange}
+                                onChange={onCandidatePhoneChange}
                             />
                         </label>
-                        <button onClick={handleCandidatePhoneNumberSubmitButtonClick}>
+                        <button onClick={onCandidatePhoneNumberSubmitButtonClick}>
                             Submit
                         </button>
                     </div>
@@ -148,7 +83,7 @@ export default function GetGeneralInformation(){
                         <label>Candidate's phone number:
                             {candidateInfo.phoneNumber}
                         </label>
-                        <button onClick={handleCandidatePhoneNumberEditButtonClick}>
+                        <button onClick={onCandidatePhoneNumberEditButtonClick}>
                             Edit
                         </button>
                     </div>
