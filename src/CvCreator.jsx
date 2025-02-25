@@ -2,17 +2,19 @@ import { useState } from "react";
 import GetGeneralInformation from "./GeneralInformation1";
 import EducationalQualifications from "./EducationalQualifications";
 
+
+
+let nextId = 0;
+
 export default function CvCreator(){
+    //General information
     const [candidateInfo, setCandidateInfo] = useState({
         candidateName: '',
         email: '',
         phoneNumber: ''
     });
-
-    // const [candidateNameEditing, setCandidateNameEditing] = useState(true);
-    // const [emailEditing, setEmailEditing] = useState(true);
-    // const [phoneNumberEditing, setPhoneNumberEditing] = useState(false);
-
+    
+    //General information
     const [dataEditing, setDataEditing] = useState({
         candidateNameEditing: true,
         emailEditing: true,
@@ -82,6 +84,41 @@ export default function CvCreator(){
         });
     }
 
+    //Education information
+    // const [schoolName, setSchoolName] = useState('');
+    // const [titleOfStudy, setTitleOfStudy] = useState('');
+    // const [dateOfStudy, setDateOfStudy] = useState('');
+
+    const [eduInfo, setEduInfo] = useState([]);     
+
+    function handleEduQualAddButtonClick(schoolName = "abc", titleOfStudy = "def", dateOfStudy = "ghi"){       
+        console.log("Add button click");
+        setEduInfo([
+            ...eduInfo,
+            { id: nextId++, schoolName: schoolName, titleOfStudy: titleOfStudy, dateOfStudy: dateOfStudy }
+        ]);
+    }
+
+    function handleEducationalQualificationOnchange(id, value, event){
+        console.log(eduInfo[0].schoolName);
+        const eduInformation = [...eduInfo];
+        const row = eduInformation.find(
+            a => a.id === id
+        );     
+        if (row){
+            if (event && event.target){
+                row[value] = event.target.value;
+                console.log(row);
+                setEduInfo(eduInformation);
+            }else {
+                console.error("Event or event.target is undefined.");
+            }            
+        }else{
+            console.error(`Row with id ${id} not found.`);
+        }   
+        
+    }
+
     return(
         <>
             <GetGeneralInformation
@@ -97,7 +134,11 @@ export default function CvCreator(){
                 onCandidatePhoneNumberSubmitButtonClick = {handleCandidatePhoneNumberSubmitButtonClick}
                 onCandidatePhoneNumberEditButtonClick = {handleCandidatePhoneNumberEditButtonClick}
             />
-            <EducationalQualifications />
+            <EducationalQualifications
+                eduInfo={eduInfo}
+                onAddQualificationButtonClick = {handleEduQualAddButtonClick}
+                onInformationChange = {handleEducationalQualificationOnchange}
+            />
         </>
         
     );

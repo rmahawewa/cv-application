@@ -1,41 +1,15 @@
 import { useState } from "react";
 
-let nextId = 0;
 
-export default function EducationalQualifications() {
+
+export default function EducationalQualifications({
+    eduInfo,
+    onAddQualificationButtonClick,
+    onInformationChange
+}) {
     const [schoolName, setSchoolName] = useState('');
     const [titleOfStudy, setTitleOfStudy] = useState('');
     const [dateOfStudy, setDateOfStudy] = useState('');
-    const [eduInfo, setEduInfo] = useState([]);
-    
-
-    function handleEduQualAddButtonClick(){
-        setEduInfo([
-            ...eduInfo,
-            { id: nextId++, schoolName: schoolName, titleOfStudy: titleOfStudy, dateOfStudy: dateOfStudy }
-        ]);
-        
-    }
-//react dev tools -> browsers dev tools -> components -> educationInfo component 
-    function handleEducationalQualificationOnchange(id, value, event){
-        console.log(eduInfo[0].schoolName);
-        const eduInformation = [...eduInfo];
-        const row = eduInformation.find(
-            a => a.id === id
-        );     
-        if (row){
-            if (event && event.target){
-                row[value] = event.target.value;
-                console.log(row);
-                setEduInfo(eduInformation);
-            }else {
-                console.error("Event or event.target is undefined.");
-            }            
-        }else{
-            console.error(`Row with id ${id} not found.`);
-        }   
-        
-    }
 
     return (
         <>
@@ -58,13 +32,14 @@ export default function EducationalQualifications() {
                     onChange = {e => setDateOfStudy(e.target.value)}
                 />
             </label>
-            <button onClick = {handleEduQualAddButtonClick}>
+            <button onClick = {e => onAddQualificationButtonClick(schoolName, titleOfStudy, dateOfStudy)}>
+            {/* <button onClick = {e => console.log(123)}> */}
                 Add
             </button>
 
             <EduInfoList 
                 eduInfo = {eduInfo}
-                onInformationChange = {handleEducationalQualificationOnchange}
+                onInformationChange = {onInformationChange}
             />
 
         </>
@@ -81,7 +56,12 @@ function EduInfoList(
         <>
             <ul>
             {isEditing ? (
-            <>             
+            <>     
+                {eduInfo.length > 0 && ( 
+                    <button onClick={() => setIsEditing(false)}>
+                    Submit</button>
+                )} 
+
                 {eduInfo.map((info, index) => (
                     
                 <li key={info.id}>
@@ -116,14 +96,17 @@ function EduInfoList(
                     </ul>
                 </li>
                 ))}                 
-                {eduInfo.length > 0 && ( 
-                    <button onClick={() => setIsEditing(false)}>
-                    Submit</button>
-                )}                
+                               
             </>
             ):(
                 //Non editing content              
             <>
+
+                {eduInfo.length > 0 && ( //not working
+                    <button onClick={() => setIsEditing(true)}>
+                    Edit</button>
+                )}
+
                 {eduInfo.map((info, index) => (
                     <li key={info.id}>
                         <ul>
@@ -139,11 +122,7 @@ function EduInfoList(
                         </ul>
                     </li>
                 ))}
-                {eduInfo.length > 0 && ( //not working
-                    <button onClick={() => setIsEditing(true)}>
-                    Edit</button>
-                )}
-                    
+                                    
             </>
             )}
                     
