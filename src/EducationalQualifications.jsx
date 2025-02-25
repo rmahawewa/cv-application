@@ -64,6 +64,7 @@ export default function EducationalQualifications() {
 
             <EduInfoList 
                 eduInfo = {eduInfo}
+                onInformationChange = {handleEducationalQualificationOnchange}
             />
 
         </>
@@ -71,8 +72,9 @@ export default function EducationalQualifications() {
 }
 
 function EduInfoList(
-    {eduInfo}
-){
+    {eduInfo,
+    onInformationChange
+}){
     const [isEditing, setIsEditing] = useState(false);
 
     return(
@@ -89,6 +91,7 @@ function EduInfoList(
                             <input 
                                 value = {info.schoolName}
                                 // onChange = {(e) => handleEducationalQualificationOnchange(info.id, "schoolName", e)}
+                                onChange = {(e) => onInformationChange(info.id, "schoolName", e)}
                             />
                         </label>
                     </li>
@@ -97,6 +100,7 @@ function EduInfoList(
                             <input 
                                 value = {info.titleOfStudy}
                                 // onChange = {(e) => handleEducationalQualificationOnchange(info.id, "titleOfStudy", e)}
+                                onChange = {(e) => onInformationChange(info.id, "titleOfStudy", e)}
                             />
                         </label>
                     </li>
@@ -105,6 +109,7 @@ function EduInfoList(
                             <input 
                                 value = {info.dateOfStudy}
                                 // onChange = {(e) => handleEducationalQualificationOnchange(info.id, "dateOfStudy", e)}
+                                onChange = {(e) => onInformationChange(info.id, "dateOfStudy", e)}
                             />
                         </label>
                     </li>
