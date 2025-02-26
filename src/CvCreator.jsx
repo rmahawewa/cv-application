@@ -1,7 +1,7 @@
 import { useState } from "react";
 import GetGeneralInformation from "./GeneralInformation1";
 import EducationalQualifications from "./EducationalQualifications";
-
+import PracticalExperiences from "./PracticalExperience";
 
 
 let nextId = 0;
@@ -84,11 +84,6 @@ export default function CvCreator(){
         });
     }
 
-    //Education information
-    // const [schoolName, setSchoolName] = useState('');
-    // const [titleOfStudy, setTitleOfStudy] = useState('');
-    // const [dateOfStudy, setDateOfStudy] = useState('');
-
     const [eduInfo, setEduInfo] = useState([]);     
 
     function handleEduQualAddButtonClick(schoolName = "abc", titleOfStudy = "def", dateOfStudy = "ghi"){       
@@ -139,6 +134,7 @@ export default function CvCreator(){
                 onAddQualificationButtonClick = {handleEduQualAddButtonClick}
                 onInformationChange = {handleEducationalQualificationOnchange}
             />
+            <PracticalExperiences />
         </>
         
     );

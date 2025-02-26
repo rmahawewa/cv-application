@@ -32,7 +32,12 @@ export default function EducationalQualifications({
                     onChange = {e => setDateOfStudy(e.target.value)}
                 />
             </label>
-            <button onClick = {e => onAddQualificationButtonClick(schoolName, titleOfStudy, dateOfStudy)}>
+            <button onClick = {e => {
+                onAddQualificationButtonClick(schoolName, titleOfStudy, dateOfStudy);
+                setSchoolName("");
+                setTitleOfStudy("");
+                setDateOfStudy("");
+            }}>
             {/* <button onClick = {e => console.log(123)}> */}
                 Add
             </button>
