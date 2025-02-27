@@ -1,82 +1,85 @@
 import { useState } from "react";
 
-let pe_nextId = 0;
-// let resp_nextId = 0;
-export default function PracticalExperiences(){
+export default function PracticalExperiences({
+    practicalExperience,
+    onPracticalExperienceAdd,
+    onPEValuesChange,
+    onAddResponsibilityButtonClick,
+    onUpdateResponsibility
+}){
 
     const [companyName, setCompanyName] = useState('');
     const [position, setPosition] = useState('');
-    // const [responsibility, setResponsibility] = useState('');
 
-    const [practicalExperience, setPracticalExperience] = useState([]);
-
+    // const [practicalExperience, setPracticalExperience] = useState([]);
 
 
-    function practicalExperienceAddButtonClick(companyName, position){
-        setPracticalExperience([
-            ...practicalExperience,
-            {id: pe_nextId++, companyName: companyName, position: position, responsibility: []}
-        ]);
-    }
 
-    function responsibilityAddButtonClick(id, respId, responsibility){
-        setPracticalExperience(prevPracticalExperience => {
-            const pracExperience = [...prevPracticalExperience];
-            const row = pracExperience.find(a => a.id === id);
+    // function practicalExperienceAddButtonClick(companyName, position){
+    //     setPracticalExperience([
+    //         ...practicalExperience,
+    //         {id: pe_nextId++, companyName: companyName, position: position, responsibility: []}
+    //     ]);
+    // }
 
-            if (row) {
-                const updatedRow = {
-                    ...row,
-                    responsibility: [...row.responsibility, {id: respId, resp: responsibility }]
-                };
-                const updatedPracExperience = pracExperience.map(item => item.id === id ? updatedRow : item);
-                return updatedPracExperience;
-            } else {
-                console.error(`Row with id ${id} not found`);
-                return prevPracticalExperience;
-            }
-        });
-    }
+    // function responsibilityAddButtonClick(id, respId, responsibility){
+    //     setPracticalExperience(prevPracticalExperience => {
+    //         const pracExperience = [...prevPracticalExperience];
+    //         const row = pracExperience.find(a => a.id === id);
 
-    function handlePracticalExperienceOnchange(id, value, event){
-        const pracExperience = [...practicalExperience];
-        const row = pracExperience.find(
-            a => a.id === id
-        );
-        if (row){
-            if(event && event.target){
-                row[value] = event.target.value;
-                setPracticalExperience(pracExperience);
-            }else{
-                console.error("Event or event.target is undefined.");
-            }
-        }else{
-            console.error(`Row with id ${id} not found`);
-        }
-    }
+    //         if (row) {
+    //             const updatedRow = {
+    //                 ...row,
+    //                 responsibility: [...row.responsibility, {id: respId, resp: responsibility }]
+    //             };
+    //             const updatedPracExperience = pracExperience.map(item => item.id === id ? updatedRow : item);
+    //             return updatedPracExperience;
+    //         } else {
+    //             console.error(`Row with id ${id} not found`);
+    //             return prevPracticalExperience;
+    //         }
+    //     });
+    // }
 
-    function handleResponsibilityOnChange(parentId, id, event){
-            setPracticalExperience((prevData) => 
-                prevData.map((workingExerienceObj) => {
-                    if(workingExerienceObj.id === parentId){
-                        return{
-                            ...workingExerienceObj,
-                            responsibility: workingExerienceObj.responsibility.map((respons) => {
-                                if (respons.id === id) {
-                                    if(event && event.target){
-                                        let value = event.target.value;
-                                        return {...respons, resp: value};
-                                    }
+    // function handlePracticalExperienceOnchange(id, value, event){
+    //     const pracExperience = [...practicalExperience];
+    //     const row = pracExperience.find(
+    //         a => a.id === id
+    //     );
+    //     if (row){
+    //         if(event && event.target){
+    //             row[value] = event.target.value;
+    //             setPracticalExperience(pracExperience);
+    //         }else{
+    //             console.error("Event or event.target is undefined.");
+    //         }
+    //     }else{
+    //         console.error(`Row with id ${id} not found`);
+    //     }
+    // }
+
+    // function handleResponsibilityOnChange(parentId, id, event){
+    //         setPracticalExperience((prevData) => 
+    //             prevData.map((workingExerienceObj) => {
+    //                 if(workingExerienceObj.id === parentId){
+    //                     return{
+    //                         ...workingExerienceObj,
+    //                         responsibility: workingExerienceObj.responsibility.map((respons) => {
+    //                             if (respons.id === id) {
+    //                                 if(event && event.target){
+    //                                     let value = event.target.value;
+    //                                     return {...respons, resp: value};
+    //                                 }
                                     
-                                }
-                            return respons;
-                            }),
-                        }
-                    }
-                return workingExerienceObj;
-                }),
-            );
-    }
+    //                             }
+    //                         return respons;
+    //                         }),
+    //                     }
+    //                 }
+    //             return workingExerienceObj;
+    //             }),
+    //         );
+    // }
 
     return (
         <>
@@ -95,7 +98,7 @@ export default function PracticalExperiences(){
             </label>
             <button 
                 onClick = {e => {
-                    practicalExperienceAddButtonClick(companyName, position);
+                    onPracticalExperienceAdd(companyName, position);
                     setCompanyName("");
                     setPosition("");
                     console.log(practicalExperience);
@@ -106,8 +109,9 @@ export default function PracticalExperiences(){
 
             <PracticalExperienceList 
                 practicalExperience = {practicalExperience}
-                onValuesChange = {handlePracticalExperienceOnchange}
-                onAddResponsibilityButtonClick = {responsibilityAddButtonClick}
+                onPEValuesChange = {onPEValuesChange}
+                onAddResponsibilityButtonClick = {onAddResponsibilityButtonClick}
+                onUpdateResponsibility = {onUpdateResponsibility}
             />
         </>
     );
@@ -116,8 +120,9 @@ export default function PracticalExperiences(){
 
 function PracticalExperienceList({
     practicalExperience,
-    onValuesChange,
-    onAddResponsibilityButtonClick
+    onPEValuesChange,
+    onAddResponsibilityButtonClick,
+    onUpdateResponsibility
 }){
     const [isEditing, setIsEditing] = useState(false);
 
@@ -138,7 +143,7 @@ function PracticalExperienceList({
                                         <label>Company name:
                                             <input 
                                                 value = {info.companyName}
-                                                onChange = {(e) => onValuesChange(info.id, "companyName", e)}
+                                                onChange = {(e) => onPEValuesChange(info.id, "companyName", e)}
                                             />
                                         </label>
                                     </li>
@@ -146,7 +151,7 @@ function PracticalExperienceList({
                                         <label>Position:
                                             <input
                                                 value = {info.position}
-                                                onChange = {(e) => onValuesChange(info.id, "position", e)}
+                                                onChange = {(e) => onPEValuesChange(info.id, "position", e)}
                                             />
                                         </label>
                                     </li>
@@ -171,6 +176,7 @@ function PracticalExperienceList({
                                             parentId = {info.id}
                                             onAddResponsibilityButtonClick = {onAddResponsibilityButtonClick}
                                             practicalExperience = {practicalExperience}
+                                            onUpdateResponsibility = {onUpdateResponsibility}
                                         />
                                     </li>
                                 </ul>
@@ -186,7 +192,8 @@ function PracticalExperienceList({
 function AddResponsibilities({
     parentId,
     onAddResponsibilityButtonClick,
-    practicalExperience
+    practicalExperience,
+    onUpdateResponsibility
 }){
 
     const [responsibility, setResponsibility] = useState('');
@@ -213,6 +220,7 @@ function AddResponsibilities({
             <ListResponsibilities 
                 parentId = {parentId}
                 practicalExperience = {practicalExperience}
+                onUpdateResponsibility = {onUpdateResponsibility}
             />
         </>
     );
@@ -221,7 +229,8 @@ function AddResponsibilities({
 
 function ListResponsibilities({
     parentId,
-    practicalExperience
+    practicalExperience,
+    onUpdateResponsibility
 }){
 
     const [isEditing, setIsEditing] = useState(false);
@@ -243,7 +252,7 @@ function ListResponsibilities({
                             <li key={info.id}>
                                 <input 
                                     value = {info.resp}
-                                    // onChange = {}
+                                    onChange = {(e) => onUpdateResponsibility(parentId, info.id, e)}
                                 />                               
                             </li>
                         ))}
