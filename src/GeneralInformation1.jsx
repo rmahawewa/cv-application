@@ -6,54 +6,6 @@ export default function GetGeneralInformation({
     onCandidateEmailChange,
     onCandidatePhoneChange
 }){
-    //General information
-    // const [dataEditing, setDataEditing] = useState({
-    //     candidateNameEditing: true,
-    //     emailEditing: true,
-    //     phoneNumberEditing: true
-    // });
-
-    // function handleCandidateNameSubmitButtonClick(){
-    //     setDataEditing({
-    //         ...dataEditing,
-    //         candidateNameEditing: false
-    //     });
-    // }
-
-    // function handleCandidateNameEditButtonClick(){
-    //     setDataEditing({
-    //         ...dataEditing,
-    //         candidateNameEditing: true
-    //     });
-    // }
-
-    // function handleCandidateEmailSubmitButtonClick(){
-    //     setDataEditing({
-    //         ...dataEditing,
-    //         emailEditing: false
-    //     });
-    // }
-
-    // function handleCandidateEmailEditButtonClick(){
-    //     setDataEditing({
-    //         ...dataEditing,
-    //         emailEditing: true
-    //     });
-    // }
-
-    // function handleCandidatePhoneNumberSubmitButtonClick(){
-    //     setDataEditing({
-    //         ...dataEditing,
-    //         phoneNumberEditing: false
-    //     });
-    // }
-
-    // function handleCandidatePhoneNumberEditButtonClick(){
-    //     setDataEditing({
-    //         ...dataEditing,
-    //         phoneNumberEditing: true
-    //     });
-    // }
 
     const [isEditing, setIsEditing] = useState(true);
 
@@ -61,52 +13,55 @@ export default function GetGeneralInformation({
         <>
             <h1>General Information</h1>
                 {isEditing ? (
-                    <div>
-                        <div>
-                            <button onClick = {() => setIsEditing(false)}>Submit</button>
-                        </div>                        
-                        <div>
-                            <label>Candidate's name: 
+                    <div className="main-wrapper">
+                                               
+                        <div className="cont-wrapper">
+                            <label>Candidate's name: </label>
                                 <input 
                                     value={candidateInfo.candidateName}
                                     onChange={onCandidateNameChange}
                                 />
-                            </label>
+                            
                         </div>
-                        <div>
-                            <label>Candidate's email:
+                        <div className="cont-wrapper">
+                            <label>Candidate's email:</label>
                                 <input 
+                                    type = "email"
                                     value={candidateInfo.email}
                                     onChange={onCandidateEmailChange}
                                 />
-                            </label>
+                            
                         </div>
-                        <div>
-                            <label>Candidate's phone number:
+                        <div className="cont-wrapper">
+                            <label>Phone number:</label>
                                 <input
                                     value={candidateInfo.phoneNumber}
                                     onChange={onCandidatePhoneChange}
                                 />
-                            </label>
-                        </div>                       
+                            
+                        </div>  
+                        <div className="cont-wrapper">
+                            <button onClick = {() => setIsEditing(false)}>Submit</button>
+                        </div>                      
                     </div>
                 ):(
-                    <div>
-                        <div>
-                            <button onClick = {() => setIsEditing(true)}>Edit</button>
-                        </div>
-                        <div>
+                    <div className="main-wrapper">
+                        
+                        <div className="cont-wrapper">
                             <label>Candidate's name:</label>
                             <label>{candidateInfo.candidateName}</label>
                         </div>
-                        <div>
+                        <div className="cont-wrapper">
                             <label>Candidate's email:</label>
                             <label>{candidateInfo.email}</label>
                         </div>
-                        <div>
-                            <label>Candidate's phone number:</label>
+                        <div className="cont-wrapper">
+                            <label>Phone number:</label>
                             <label>{candidateInfo.phoneNumber}</label>
-                        </div>                        
+                        </div>  
+                        <div className="cont-wrapper">
+                            <button onClick = {() => setIsEditing(true)}>Edit</button>
+                        </div>                      
                     </div>
                 )}
             
@@ -114,83 +69,4 @@ export default function GetGeneralInformation({
 
     );
 
-    
-    
-    // return (
-    
-    //         <>
-    //             <h1>General Information</h1>
-
-    //             {dataEditing.candidateNameEditing ? (
-    //                 <div>
-    //                 <label>Candidate's name: 
-    //                 <input 
-    //                     value={candidateInfo.candidateName}
-    //                     onChange={onCandidateNameChange}
-    //                 />
-    //                 </label>
-    //                 <button onClick={handleCandidateNameSubmitButtonClick}>
-    //                 Submit
-    //                 </button>
-    //                 </div>
-                    
-    //             ):(
-    //                 <div>
-    //                     <label>Candidate's name:
-    //                         {candidateInfo.candidateName}
-    //                     </label>
-    //                     <button onClick={handleCandidateNameEditButtonClick}>
-    //                         Edit
-    //                     </button>
-    //                 </div>
-    //             )}
-
-    //             {dataEditing.emailEditing ? (
-    //                 <div>
-    //                     <label>Candidate's email:
-    //                         <input 
-    //                             value={candidateInfo.email}
-    //                             onChange={onCandidateEmailChange}
-    //                         />
-    //                     </label>
-    //                     <button onClick={handleCandidateEmailSubmitButtonClick}>
-    //                         Submit
-    //                     </button>
-    //                 </div>
-    //             ):(
-    //                 <div>
-    //                     <label>Candidate's email:
-    //                         {candidateInfo.email}
-    //                     </label>
-    //                     <button onClick={handleCandidateEmailEditButtonClick}>
-    //                         Edit
-    //                     </button>
-    //                 </div>
-    //             )}
-
-    //             {dataEditing.phoneNumberEditing ? (
-    //                 <div>
-    //                     <label>Candidate's phone number:
-    //                         <input
-    //                             value={candidateInfo.phoneNumber}
-    //                             onChange={onCandidatePhoneChange}
-    //                         />
-    //                     </label>
-    //                     <button onClick={handleCandidatePhoneNumberSubmitButtonClick}>
-    //                         Submit
-    //                     </button>
-    //                 </div>
-    //             ):(
-    //                 <div>
-    //                     <label>Candidate's phone number:
-    //                         {candidateInfo.phoneNumber}
-    //                     </label>
-    //                     <button onClick={handleCandidatePhoneNumberEditButtonClick}>
-    //                         Edit
-    //                     </button>
-    //                 </div>
-    //             )}   
-    //         </>        
-        
-    // );
 }

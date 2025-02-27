@@ -14,33 +14,40 @@ export default function EducationalQualifications({
     return (
         <>
             <h1>Educational Experience</h1>
-            <label >School name:
-                <input 
-                    value = {schoolName}
-                    onChange = {e => setSchoolName(e.target.value)}
-                />
-            </label>
-            <label>Title of study:
-                <input 
-                    value = {titleOfStudy}
-                    onChange = {e => setTitleOfStudy(e.target.value)}
-                />
-            </label>
-            <label>Date of study:
-                <input
-                    value = {dateOfStudy}
-                    onChange = {e => setDateOfStudy(e.target.value)}
-                />
-            </label>
-            <button onClick = {e => {
-                onAddQualificationButtonClick(schoolName, titleOfStudy, dateOfStudy);
-                setSchoolName("");
-                setTitleOfStudy("");
-                setDateOfStudy("");
-            }}>
-            {/* <button onClick = {e => console.log(123)}> */}
-                Add
-            </button>
+                <div className="main-wrapper">
+                    <div className="cont-wrapper">
+                        <label >School name:</label>
+                        <input 
+                            value = {schoolName}
+                            onChange = {e => setSchoolName(e.target.value)}
+                        />
+                    </div>
+                    <div className="cont-wrapper">
+                        <label>Title of study:</label>
+                        <input 
+                            value = {titleOfStudy}
+                            onChange = {e => setTitleOfStudy(e.target.value)}
+                        />
+                    </div>
+                    <div className="cont-wrapper">
+                        <label>Date of study:</label>
+                        <input
+                            type = "date"
+                            value = {dateOfStudy}
+                            onChange = {e => setDateOfStudy(e.target.value)}
+                        />
+                    </div>
+                    <div className="cont-wrapper">
+                        <button onClick = {e => {
+                            onAddQualificationButtonClick(schoolName, titleOfStudy, dateOfStudy);
+                            setSchoolName("");
+                            setTitleOfStudy("");
+                            setDateOfStudy("");
+                        }}>
+                        Add
+                        </button>
+                    </div>
+                </div>    
 
             <EduInfoList 
                 eduInfo = {eduInfo}
@@ -69,34 +76,37 @@ function EduInfoList(
 
                 {eduInfo.map((info, index) => (
                     
-                <li key={info.id}>
+                <li key={info.id} className="list">
                     <ul>
-                    <li>
-                        <label>School name: 
+                    <li className="detail">
+                        <label>School name: </label>
                             <input 
+                                className="input-main-responsibilities"
                                 value = {info.schoolName}
                                 // onChange = {(e) => handleEducationalQualificationOnchange(info.id, "schoolName", e)}
                                 onChange = {(e) => onInformationChange(info.id, "schoolName", e)}
                             />
-                        </label>
+                        
                     </li>
-                    <li>
-                        <label>Title of study:
+                    <li className="detail">
+                        <label>Title of study:</label>
                             <input 
+                                className="input-main-responsibilities"
                                 value = {info.titleOfStudy}
                                 // onChange = {(e) => handleEducationalQualificationOnchange(info.id, "titleOfStudy", e)}
                                 onChange = {(e) => onInformationChange(info.id, "titleOfStudy", e)}
                             />
-                        </label>
+                        
                     </li>
-                    <li>
-                        <label>Date of study:
+                    <li className="detail">
+                        <label>Date of study:</label>
                             <input 
+                                className="input-main-responsibilities"
                                 value = {info.dateOfStudy}
                                 // onChange = {(e) => handleEducationalQualificationOnchange(info.id, "dateOfStudy", e)}
                                 onChange = {(e) => onInformationChange(info.id, "dateOfStudy", e)}
                             />
-                        </label>
+                        
                     </li>
                     </ul>
                 </li>
@@ -113,16 +123,16 @@ function EduInfoList(
                 )}
 
                 {eduInfo.map((info, index) => (
-                    <li key={info.id}>
+                    <li key={info.id} className="list">
                         <ul>
-                            <li>
-                                <label>School name: {info.schoolName}</label>
+                            <li className="detail">
+                                <label>School name:</label><label> {info.schoolName}</label>
                             </li>
-                            <li>
-                                <label>Title of study: {info.titleOfStudy}</label>
+                            <li className="detail">
+                                <label>Title of study:</label><label> {info.titleOfStudy}</label>
                             </li>
-                            <li>
-                                <label>Date of study: {info.dateOfStudy}</label>
+                            <li className="detail">
+                                <label>Date of study:</label><label> {info.dateOfStudy}</label>
                             </li>
                         </ul>
                     </li>

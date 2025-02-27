@@ -11,101 +11,39 @@ export default function PracticalExperiences({
     const [companyName, setCompanyName] = useState('');
     const [position, setPosition] = useState('');
 
-    // const [practicalExperience, setPracticalExperience] = useState([]);
-
-
-
-    // function practicalExperienceAddButtonClick(companyName, position){
-    //     setPracticalExperience([
-    //         ...practicalExperience,
-    //         {id: pe_nextId++, companyName: companyName, position: position, responsibility: []}
-    //     ]);
-    // }
-
-    // function responsibilityAddButtonClick(id, respId, responsibility){
-    //     setPracticalExperience(prevPracticalExperience => {
-    //         const pracExperience = [...prevPracticalExperience];
-    //         const row = pracExperience.find(a => a.id === id);
-
-    //         if (row) {
-    //             const updatedRow = {
-    //                 ...row,
-    //                 responsibility: [...row.responsibility, {id: respId, resp: responsibility }]
-    //             };
-    //             const updatedPracExperience = pracExperience.map(item => item.id === id ? updatedRow : item);
-    //             return updatedPracExperience;
-    //         } else {
-    //             console.error(`Row with id ${id} not found`);
-    //             return prevPracticalExperience;
-    //         }
-    //     });
-    // }
-
-    // function handlePracticalExperienceOnchange(id, value, event){
-    //     const pracExperience = [...practicalExperience];
-    //     const row = pracExperience.find(
-    //         a => a.id === id
-    //     );
-    //     if (row){
-    //         if(event && event.target){
-    //             row[value] = event.target.value;
-    //             setPracticalExperience(pracExperience);
-    //         }else{
-    //             console.error("Event or event.target is undefined.");
-    //         }
-    //     }else{
-    //         console.error(`Row with id ${id} not found`);
-    //     }
-    // }
-
-    // function handleResponsibilityOnChange(parentId, id, event){
-    //         setPracticalExperience((prevData) => 
-    //             prevData.map((workingExerienceObj) => {
-    //                 if(workingExerienceObj.id === parentId){
-    //                     return{
-    //                         ...workingExerienceObj,
-    //                         responsibility: workingExerienceObj.responsibility.map((respons) => {
-    //                             if (respons.id === id) {
-    //                                 if(event && event.target){
-    //                                     let value = event.target.value;
-    //                                     return {...respons, resp: value};
-    //                                 }
-                                    
-    //                             }
-    //                         return respons;
-    //                         }),
-    //                     }
-    //                 }
-    //             return workingExerienceObj;
-    //             }),
-    //         );
-    // }
-
     return (
         <>
             <h1>Practical Experience</h1>
-            <label>Company name: 
-                <input
-                    value = {companyName}
-                    onChange = {e => setCompanyName(e.target.value)}
-                />
-            </label>
-            <label>Position:
-                <input 
-                    value = {position}
-                    onChange = {e => setPosition(e.target.value)}
-                />
-            </label>
-            <button 
-                onClick = {e => {
-                    onPracticalExperienceAdd(companyName, position);
-                    setCompanyName("");
-                    setPosition("");
-                    console.log(practicalExperience);
-                }}
-            >
-                Add
-            </button>
+            <div className="main-wrapper-pe">
+                <div className="cont-wrapper">
+                    <label>Company name: </label>
+                    <input
+                        value = {companyName}
+                        onChange = {e => setCompanyName(e.target.value)}
+                    />
+                    
+                </div>
+                <div className="cont-wrapper">
+                    <label>Position:</label>
+                    <input 
+                        value = {position}
+                        onChange = {e => setPosition(e.target.value)}
+                    />
+                    
+                </div>
+                <div className="cont-wrapper">
+                    <button 
+                    onClick = {e => {
+                        onPracticalExperienceAdd(companyName, position);
+                        setCompanyName("");
+                        setPosition("");
+                        console.log(practicalExperience);
+                    }}
+                    >
+                        Add
+                    </button>
+                </div>
+            </div>          
 
             <PracticalExperienceList 
                 practicalExperience = {practicalExperience}
@@ -137,23 +75,23 @@ function PracticalExperienceList({
                             </button>
                         )}
                         {practicalExperience.map((info) => (
-                            <li key={info.id}>
+                            <li key={info.id} className="list">
                                 <ul>
-                                    <li>
-                                        <label>Company name:
+                                    <li className="detail">
+                                        <label>Company name:</label>
                                             <input 
                                                 value = {info.companyName}
                                                 onChange = {(e) => onPEValuesChange(info.id, "companyName", e)}
                                             />
-                                        </label>
+                                        
                                     </li>
-                                    <li>
-                                        <label>Position:
+                                    <li className="detail">
+                                        <label>Position:</label>
                                             <input
                                                 value = {info.position}
                                                 onChange = {(e) => onPEValuesChange(info.id, "position", e)}
                                             />
-                                        </label>
+                                        
                                     </li>
                                 </ul>
                             </li>
@@ -167,11 +105,11 @@ function PracticalExperienceList({
                             </button>
                         )}
                         {practicalExperience.map((info) => (
-                            <li key = {info.id}>
+                            <li key = {info.id} className="list">
                                 <ul>
-                                    <li><label>Company name: {info.companyName}</label></li>
-                                    <li><label>Position: {info.position}</label></li>
-                                    <li>
+                                    <li className="detail"><label>Company name: {info.companyName}</label></li>
+                                    <li className="detail"><label>Position: {info.position}</label></li>
+                                    <li className="detail">
                                         <AddResponsibilities 
                                             parentId = {info.id}
                                             onAddResponsibilityButtonClick = {onAddResponsibilityButtonClick}
@@ -201,20 +139,24 @@ function AddResponsibilities({
 
     return (
         <>
-            <label>Main Responsibilities:
-                <input
-                    value={responsibility}
-                    onChange = {e => setResponsibility(e.target.value)}
-                />
-            </label>
-            <button onClick = {(e) => 
-            {
-                setRespId((rspid) => rspid + 1);
-                onAddResponsibilityButtonClick(parentId, respId, responsibility); 
-            }
-            }>
-                Add
-            </button>
+            <div className="responsibility-add-wrapper">
+                <label>Main Responsibilities:</label>
+                    <input
+                        className="input-main-responsibilities"
+                        value={responsibility}
+                        onChange = {e => setResponsibility(e.target.value)}
+                    />
+                
+                <button onClick = {(e) => 
+                {
+                    setRespId((rspid) => rspid + 1);
+                    onAddResponsibilityButtonClick(parentId, respId, responsibility); 
+                    setResponsibility("");
+                }
+                }>
+                    Add
+                </button>
+            </div>           
 
             {/* responsibility list */}
             <ListResponsibilities 
@@ -242,34 +184,39 @@ function ListResponsibilities({
         <>
             <ul>
                 {isEditing ? (
-                    <>
+                    <div>
                         {responsabilities.length > 0 && (
                             <button onClick = {() => setIsEditing(false)}>
                                 Save
                             </button>
                         )}
-                        {responsabilities.map((info) => (
-                            <li key={info.id}>
-                                <input 
-                                    value = {info.resp}
-                                    onChange = {(e) => onUpdateResponsibility(parentId, info.id, e)}
-                                />                               
-                            </li>
-                        ))}
-                    </>
+                        <div className="inner-list">
+                            {responsabilities.map((info) => (
+                                <li key={info.id} className="detail">
+                                    <input 
+                                        className="input-main-responsibilities"
+                                        value = {info.resp}
+                                        onChange = {(e) => onUpdateResponsibility(parentId, info.id, e)}
+                                    />                               
+                                </li>
+                            ))}
+                        </div>                        
+                    </div>
                 ):(
-                    <>
+                    <div>
                         {responsabilities.length > 0 && (
                             <button onClick = {() => setIsEditing(true)} >
                                 Edit
                             </button>
                         )}
-                        {responsabilities.map((info) => (
-                            <li key={info.id}>
-                                 <label>{info.resp}</label>
-                            </li>
-                        ))}
-                    </>
+                        <div className="inner-list">
+                            {responsabilities.map((info) => (
+                                <li key={info.id} className="detail">
+                                    <label>{info.resp}</label>
+                                </li>
+                            ))}
+                        </div>                        
+                    </div>
                 )}
             </ul>
         </>

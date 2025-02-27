@@ -8,6 +8,7 @@ let nextId = 0;
 let pe_nextId = 0;
 
 export default function CvCreator(){
+
     //General information
     const [candidateInfo, setCandidateInfo] = useState({
         candidateName: '',
@@ -35,48 +36,6 @@ export default function CvCreator(){
             phoneNumber: e.target.value
         });
     }
-
-    // function handleCandidateNameSubmitButtonClick(){
-    //     setDataEditing({
-    //         ...dataEditing,
-    //         candidateNameEditing: false
-    //     });
-    // }
-
-    // function handleCandidateNameEditButtonClick(){
-    //     setDataEditing({
-    //         ...dataEditing,
-    //         candidateNameEditing: true
-    //     });
-    // }
-
-    // function handleCandidateEmailSubmitButtonClick(){
-    //     setDataEditing({
-    //         ...dataEditing,
-    //         emailEditing: false
-    //     });
-    // }
-
-    // function handleCandidateEmailEditButtonClick(){
-    //     setDataEditing({
-    //         ...dataEditing,
-    //         emailEditing: true
-    //     });
-    // }
-
-    // function handleCandidatePhoneNumberSubmitButtonClick(){
-    //     setDataEditing({
-    //         ...dataEditing,
-    //         phoneNumberEditing: false
-    //     });
-    // }
-
-    // function handleCandidatePhoneNumberEditButtonClick(){
-    //     setDataEditing({
-    //         ...dataEditing,
-    //         phoneNumberEditing: true
-    //     });
-    // }
 
     //education information
 
@@ -182,24 +141,33 @@ export default function CvCreator(){
 
     return(
         <>
-            <GetGeneralInformation
-                candidateInfo = {candidateInfo}
-                onCandidateNameChange = {handleCandidateNameChange}
-                onCandidateEmailChange = {handleEmailChange}
-                onCandidatePhoneChange = {handlePhoneNumberChange}
-            />
-            <EducationalQualifications
-                eduInfo={eduInfo}
-                onAddQualificationButtonClick = {handleEduQualAddButtonClick}
-                onInformationChange = {handleEducationalQualificationOnchange}
-            />
-            <PracticalExperiences 
-                practicalExperience = {practicalExperience}
-                onPracticalExperienceAdd = {practicalExperienceAddButtonClick}
-                onPEValuesChange = {handlePracticalExperienceOnchange}
-                onAddResponsibilityButtonClick = {responsibilityAddButtonClick}
-                onUpdateResponsibility = {handleResponsibilityOnChange}
-            />
+            <div className="main-container">
+                <div className="gi-container">
+                    <GetGeneralInformation
+                    candidateInfo = {candidateInfo}
+                    onCandidateNameChange = {handleCandidateNameChange}
+                    onCandidateEmailChange = {handleEmailChange}
+                    onCandidatePhoneChange = {handlePhoneNumberChange}
+                    />
+                </div>
+                <div className="eq-container">
+                    <EducationalQualifications
+                    eduInfo={eduInfo}
+                    onAddQualificationButtonClick = {handleEduQualAddButtonClick}
+                    onInformationChange = {handleEducationalQualificationOnchange}
+                    />
+                </div>
+                <div className="pe-container">
+                    <PracticalExperiences 
+                    practicalExperience = {practicalExperience}
+                    onPracticalExperienceAdd = {practicalExperienceAddButtonClick}
+                    onPEValuesChange = {handlePracticalExperienceOnchange}
+                    onAddResponsibilityButtonClick = {responsibilityAddButtonClick}
+                    onUpdateResponsibility = {handleResponsibilityOnChange}
+                    />
+                </div>
+            </div>            
+            
         </>
         
     );
