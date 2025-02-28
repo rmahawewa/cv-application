@@ -40,9 +40,15 @@ html,body,.main-container{
 }
 
 button{
-  width: 6rem;
+  /* width: 6rem; */
   height: 2rem;
   font-size: medium;
+  border-radius: 0.25rem;
+  border: 1px solid darkgreen;
+  background-color: darkgreen;
+  color: white;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 ul{
@@ -69,9 +75,62 @@ ul{
   @media (width >= 40em) {
     flex-direction: row;
   }
-  gap: 1rem;
+  gap: 1.4rem;
 }
 
-.input-main-responsibilities{
+input{
+  border-radius: 0.25rem;
+  border: 1px solid darkgreen;
+  font-size: medium;
+}
+
+.input-edit-details{
   width: 23rem;
+  height: 1.5rem;
+}
+
+.lbl{
+  display: inline-block;
+  width: 11rem;
+}
+
+h1, h2, h3, h4, h5{
+  color: darkblue;
+}
+
+li, label, input {
+  color: darkblue;
+}
+
+.error-msg{
+  color: red;
+}
+
+label{
+  font-size: medium;
+}
+
+.section-wrapper{
+  padding-top: 1rem;
+}
+
+.edu-info,.prac-info, .general-info{
+  display: flex;
+  flex-direction: column;
+  padding-top: 1rem;
+}
+
+.general-info{
+  font-weight: bold;
+}
+
+.cv-container{
+  border: 1px solid darkgreen;
+  width: 40rem;
+  margin-top: 3rem;
+  padding: 3rem;
+}
+
+.resp{
+  font-weight: 600;
 }

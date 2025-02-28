@@ -2,6 +2,8 @@ import { useState } from "react";
 import GetGeneralInformation from "./GeneralInformation1";
 import EducationalQualifications from "./EducationalQualifications";
 import PracticalExperiences from "./PracticalExperience";
+import ViewCV from "./ViewCV";
+
 
 
 let nextId = 0;
@@ -11,9 +13,9 @@ export default function CvCreator(){
 
     //General information
     const [candidateInfo, setCandidateInfo] = useState({
-        candidateName: '',
-        email: '',
-        phoneNumber: ''
+        candidateName: 'Smith Jenet',
+        email: 'smith123@example.com',
+        phoneNumber: '0145856956'
     });   
 
     function handleCandidateNameChange(e){
@@ -35,6 +37,15 @@ export default function CvCreator(){
             ...candidateInfo,
             phoneNumber: e.target.value
         });
+    }
+
+    function handleOnFocus(field){
+        if(field.localeCompare("candidateName") === 0){
+            setCandidateInfo({
+                ...candidateInfo,
+                candidateName: ''
+            });
+        }
     }
 
     //education information
@@ -139,33 +150,61 @@ export default function CvCreator(){
             );
     }
 
+    const [editMode, setEditMode] = useState(true);
+
     return(
         <>
             <div className="main-container">
-                <div className="gi-container">
-                    <GetGeneralInformation
-                    candidateInfo = {candidateInfo}
-                    onCandidateNameChange = {handleCandidateNameChange}
-                    onCandidateEmailChange = {handleEmailChange}
-                    onCandidatePhoneChange = {handlePhoneNumberChange}
-                    />
-                </div>
-                <div className="eq-container">
-                    <EducationalQualifications
-                    eduInfo={eduInfo}
-                    onAddQualificationButtonClick = {handleEduQualAddButtonClick}
-                    onInformationChange = {handleEducationalQualificationOnchange}
-                    />
-                </div>
-                <div className="pe-container">
-                    <PracticalExperiences 
-                    practicalExperience = {practicalExperience}
-                    onPracticalExperienceAdd = {practicalExperienceAddButtonClick}
-                    onPEValuesChange = {handlePracticalExperienceOnchange}
-                    onAddResponsibilityButtonClick = {responsibilityAddButtonClick}
-                    onUpdateResponsibility = {handleResponsibilityOnChange}
-                    />
-                </div>
+                <h1>CV Creator</h1>
+                {editMode ? (
+                    <>
+                        <div>
+                            <button onClick={() => setEditMode(false)}>
+                                View the CV
+                            </button>
+                        </div>
+                        <div className="gi-container">
+                            <GetGeneralInformation
+                            candidateInfo = {candidateInfo}
+                            onCandidateNameChange = {handleCandidateNameChange}
+                            onCandidateEmailChange = {handleEmailChange}
+                            onCandidatePhoneChange = {handlePhoneNumberChange}
+                            setInputEmpty = {handleOnFocus}
+                            />
+                        </div>
+                        <div className="eq-container">
+                            <EducationalQualifications
+                            eduInfo={eduInfo}
+                            onAddQualificationButtonClick = {handleEduQualAddButtonClick}
+                            onInformationChange = {handleEducationalQualificationOnchange}
+                            />
+                        </div>
+                        <div className="pe-container">
+                            <PracticalExperiences 
+                            practicalExperience = {practicalExperience}
+                            onPracticalExperienceAdd = {practicalExperienceAddButtonClick}
+                            onPEValuesChange = {handlePracticalExperienceOnchange}
+                            onAddResponsibilityButtonClick = {responsibilityAddButtonClick}
+                            onUpdateResponsibility = {handleResponsibilityOnChange}
+                            />
+                        </div>
+                    </>                    
+                ):(
+                    <>
+                        <div>
+                            <button onClick={() => setEditMode(true)}>
+                                Edit mode
+                            </button>
+                        </div>
+                        <div className="cv-container">
+                            <ViewCV 
+                                candidateInfo = {candidateInfo}
+                                eduInfo = {eduInfo}
+                                practicalExperience = {practicalExperience}
+                            />
+                        </div>
+                    </>
+                )}                
             </div>            
             
         </>
