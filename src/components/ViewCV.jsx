@@ -1,4 +1,5 @@
 import { useState } from "react";
+import '../styles/cvView.css';
 
 export default function ViewCV({
     candidateInfo,
@@ -9,7 +10,7 @@ export default function ViewCV({
     return(
         <>
             <div><h5>Curriculumn Vitae</h5></div>
-            <div className="section-wrapper">
+            <div className="section-wrapper-top">
                 <div className="general-info">
                     <h3>{candidateInfo.candidateName}</h3>
                     <label>{candidateInfo.email}</label>

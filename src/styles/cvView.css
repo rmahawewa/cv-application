@@ -1,0 +1,24 @@
+.section-wrapper{
+    padding-top: 1rem;
+  }
+  
+  .edu-info,.prac-info, .general-info{
+    display: flex;
+    flex-direction: column;
+    padding-top: 1rem;
+  }
+  
+  .general-info{
+    font-weight: bold;
+  }
+  
+  .cv-container{
+    border: 1px solid darkgreen;
+    width: 40rem;
+    margin-top: 3rem;
+    padding: 3rem;
+  }
+  
+  .resp{
+    font-weight: 600;
+  }

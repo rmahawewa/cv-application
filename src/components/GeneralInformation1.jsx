@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import '../styles/cvCreate.css';
 
 export default function GetGeneralInformation({
     candidateInfo,

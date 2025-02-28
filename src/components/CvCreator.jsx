@@ -3,6 +3,7 @@ import GetGeneralInformation from "./GeneralInformation1";
 import EducationalQualifications from "./EducationalQualifications";
 import PracticalExperiences from "./PracticalExperience";
 import ViewCV from "./ViewCV";
+import '../styles/cvCreate.css';
 
 
 
