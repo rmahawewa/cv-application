@@ -9,12 +9,14 @@ export default function ViewCV({
 
     return(
         <>
-            <div><h5>Curriculumn Vitae</h5></div>
+            <div className="cv-intro"><label>Curriculumn Vitae</label></div>
             <div className="section-wrapper-top">
                 <div className="general-info">
-                    <h3>{candidateInfo.candidateName}</h3>
-                    <label>{candidateInfo.email}</label>
-                    <label>{candidateInfo.phoneNumber}</label>
+                    <h3 className="cadi-name">{candidateInfo.candidateName}</h3>
+                    <div className="set">
+                        <label>{candidateInfo.email}</label>
+                        <label>{candidateInfo.phoneNumber}</label>
+                    </div>                    
                 </div>                
             </div>
             <hr></hr>
@@ -22,9 +24,11 @@ export default function ViewCV({
                 <h3>Educational Experience</h3>
                 {eduInfo.map((info) => (
                     <div key={info.id} className="edu-info">
-                        <label>{info.schoolName}</label>
-                        <label>{info.titleOfStudy}</label>
-                        <label>{info.dateOfStudy}</label>
+                        <div className="set">
+                            <label>{info.schoolName}</label>
+                            <label>{info.dateOfStudy}</label>
+                        </div>                        
+                        <label>{info.titleOfStudy}</label>                        
                     </div>
                 ))}
             </div>
@@ -32,8 +36,10 @@ export default function ViewCV({
                 <h3>Practical Experience</h3>
                 {practicalExperience.map((info) => (
                     <div key={info.id} className="prac-info">
-                        <label>{info.companyName}</label>
-                        <label>{info.position}</label>
+                        <div className="set">
+                            <label>{info.companyName}</label>
+                            <label>{info.position}</label>
+                        </div>
                         <div className="responsibilities">
                             {info.responsibility.map((data) => (
                                 <div key={data.id}>

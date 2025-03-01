@@ -26,3 +26,22 @@
   hr{
     color: darkgreen;
   }
+
+  .cv-intro{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+
+  .set{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .cadi-name{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+  }
