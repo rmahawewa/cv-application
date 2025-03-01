@@ -17,6 +17,7 @@ export default function ViewCV({
                     <label>{candidateInfo.phoneNumber}</label>
                 </div>                
             </div>
+            <hr></hr>
             <div className="section-wrapper">
                 <h3>Educational Experience</h3>
                 {eduInfo.map((info) => (
