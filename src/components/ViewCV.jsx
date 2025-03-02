@@ -4,7 +4,9 @@ import '../styles/cvView.css';
 export default function ViewCV({
     candidateInfo,
     eduInfo,
-    practicalExperience
+    practicalExperience,
+    jobRole,
+    summery
 }){
 
     return(
@@ -20,6 +22,11 @@ export default function ViewCV({
                 </div>                
             </div>
             <hr></hr>
+            <h4 className="job-role">{jobRole}</h4>
+            <div className="section-wrapper">
+                <h3>Summery</h3>
+                <label className="summery">{summery}</label>
+            </div>
             <div className="section-wrapper">
                 <h3>Educational Experience</h3>
                 {eduInfo.map((info) => (

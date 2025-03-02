@@ -2,6 +2,7 @@ import { useState } from "react";
 import GetGeneralInformation from "./GeneralInformation1";
 import EducationalQualifications from "./EducationalQualifications";
 import PracticalExperiences from "./PracticalExperience";
+import { GetJobRole, GetSummery } from "./JobRoleAndSummery";
 import ViewCV from "./ViewCV";
 import '../styles/cvCreate.css';
 
@@ -153,6 +154,22 @@ export default function CvCreator(){
 
     const [editMode, setEditMode] = useState(true);
 
+    //get job role
+
+    const [jobRole, setJobRole] = useState('Software Engineer');
+
+    function handleJobRoleChange(e){
+        setJobRole(e.target.value);
+    }
+
+    //get summery
+
+    const [summery, setSummery] = useState('Experienced Software Engineer with 3 years of expertise in full-stack JavaScript development. Proficient in building robust and maintainable web applications using React, Node.js, Express.js. Demonstrated ability to collaborate effectively in agile environments and deliver high-quality code. Seeking to leverage my skills to contribute to challenging and impactful projects.');
+
+    function handleSummeryChange(e){
+        setSummery(e.target.value);
+    }
+
     return(
         <>
             <div className="main-container">
@@ -171,6 +188,18 @@ export default function CvCreator(){
                             onCandidateEmailChange = {handleEmailChange}
                             onCandidatePhoneChange = {handlePhoneNumberChange}
                             setInputEmpty = {handleOnFocus}
+                            />
+                        </div>
+                        <div className="jr-container">
+                            <GetJobRole 
+                                jobRole = {jobRole}
+                                jobRoleOnChange = {handleJobRoleChange}                                
+                            />
+                        </div>
+                        <div className="smry-container">
+                            <GetSummery
+                                summery = {summery}
+                                summeryOnChange = {handleSummeryChange}
                             />
                         </div>
                         <div className="eq-container">
@@ -202,6 +231,8 @@ export default function CvCreator(){
                                 candidateInfo = {candidateInfo}
                                 eduInfo = {eduInfo}
                                 practicalExperience = {practicalExperience}
+                                jobRole = {jobRole}
+                                summery = {summery}
                             />
                         </div>
                     </>

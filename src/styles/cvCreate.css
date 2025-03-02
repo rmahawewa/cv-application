@@ -15,6 +15,16 @@ html,body,.main-container{
       grid-template-columns: 1.2fr 1.2fr 1.2fr 1fr;
     }  
   }
+
+  .main-wrapper-jr{
+    display: grid;
+    @media (width <= 20em) {
+      grid-template-rows: 1fr 1fr;
+    }  
+    @media(width >= 40em){
+      grid-template-columns: 1.2fr 1.2fr 1.2fr 1fr;
+    }  
+  }
   
   .main-wrapper-pe{
     display: grid;
@@ -25,6 +35,16 @@ html,body,.main-container{
       grid-template-columns: 1.2fr 1.2fr 1.2fr;
     }
   }
+
+  .main-wrapper-sum{
+    display: grid;
+    @media (width <= 20em) {
+      grid-template-rows: 2fr 1fr;
+    }  
+    @media(width >= 40em){
+      grid-template-columns: 3.6fr 1fr;
+  }
+}
   
   .cont-wrapper{
     display:grid;
@@ -116,4 +136,12 @@ html,body,.main-container{
     width: 40rem;
     margin-top: 3rem;
     padding: 3rem;
+  }
+
+  textarea{
+    font-size: large;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 0.25rem;
+    border: 1px solid darkgreen;
+    color: darkblue;
   }

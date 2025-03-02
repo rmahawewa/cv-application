@@ -40,8 +40,14 @@
     justify-content: space-between;
   }
 
-  .cadi-name{
+  .cadi-name,.job-role{
     display:flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .summery{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
   }
