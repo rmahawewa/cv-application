@@ -25,7 +25,7 @@ export default function ViewCV({
             <h4 className="job-role">{jobRole}</h4>
             <div className="section-wrapper">
                 <h3>Summery</h3>
-                <label className="summery">{summery}</label>
+                <div className="summery">{summery}</div>
             </div>
             <div className="section-wrapper">
                 <h3>Educational Experience</h3>
